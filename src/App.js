@@ -1,25 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import Navbar from './Navbar'
+import Header from './Header'
+import Blogs from './Blogs'
+import Footer from './Footer'
+import { useState } from "react";
 
-function App() {
+
+const App = () => {
+
+  const [drop, setDrop] = useState('')
+  const [head, setHead] = useState('')
+
+  const handleBurger = () => {
+    if (drop === '') {
+      setDrop('nav')
+      setHead('headee')
+
+    } else{
+      setDrop('')
+      setHead('')
+    }
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+        <Navbar drop = {drop} handleBurger = {handleBurger}/>
+        <Header head={head} drop = {drop} handleBurger = {handleBurger}/>
+        <Blogs />
+        <Footer />
     </div>
-  );
+  )
 }
 
-export default App;
+export default App
